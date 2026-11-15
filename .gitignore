@@ -1,3 +1,9 @@
 staging.env
 .env
 *.tar.gz
+
+.venv/
+.coverage
+.pytest_cache/
+__pycache__/
+*.py[cod]
