@@ -7,3 +7,5 @@ staging.env
 .pytest_cache/
 __pycache__/
 *.py[cod]
+
+.vault_pass

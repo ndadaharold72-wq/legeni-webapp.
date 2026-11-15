@@ -1,0 +1,31 @@
+
+PLAY [Déploiement Kubernetes de l'application fil rouge] ***********************
+
+TASK [Charger les variables de l'environnement cible] **************************
+[WARNING]: Deprecation warnings can be disabled by setting `deprecation_warnings=False` in ansible.cfg.
+[DEPRECATION WARNING]: Importing 'to_bytes' from 'ansible.module_utils._text' is deprecated. This feature will be removed from ansible-core version 2.24. Use ansible.module_utils.common.text.converters instead.
+[DEPRECATION WARNING]: Importing 'to_native' from 'ansible.module_utils._text' is deprecated. This feature will be removed from ansible-core version 2.24. Use ansible.module_utils.common.text.converters instead.
+[DEPRECATION WARNING]: Importing 'to_text' from 'ansible.module_utils._text' is deprecated. This feature will be removed from ansible-core version 2.24. Use ansible.module_utils.common.text.converters instead.
+ok: [localhost]
+
+TASK [Créer le namespace] ******************************************************
+ok: [localhost]
+
+TASK [Créer le secret Redis] ***************************************************
+changed: [localhost]
+
+TASK [Appliquer les manifests et attendre la fin du rolling update] ************
+[DEPRECATION WARNING]: Direct access to the `environment` attribute is deprecated. This feature will be removed from ansible-core version 2.23. Consider using `copy_with_new_env` or passing `overrides` to `template`.
+ok: [localhost]
+
+TASK [Smoke test depuis le cluster] ********************************************
+[DEPRECATION WARNING]: The `ansible.module_utils.common._collections_compat` module is deprecated. This feature will be removed from ansible-core version 2.24. Use `collections.abc` from the Python standard library instead.
+ok: [localhost]
+
+TASK [Résultat] ****************************************************************
+ok: [localhost] => {
+    "msg": "staging OK : {'app': 'legeni-webapp', 'env': 'staging', 'hostname': 'webapp-7c7f5f5946-n9mz8', 'version': '1.1.0'}"
+}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=6    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
