@@ -4,6 +4,11 @@ FROM python:3.12-slim AS base
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 WORKDIR /app
+# Follow the current Debian security repository version for this patched library.
+# hadolint ignore=DL3008
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends --only-upgrade zlib1g \
+ && rm -rf /var/lib/apt/lists/*
 # On copie d'abord requirements.txt seul : cette couche reste en cache
 # tant que les dépendances ne changent pas.
 COPY requirements.txt .
@@ -14,7 +19,7 @@ FROM base AS test
 COPY requirements-dev.txt .
 RUN pip install --no-cache-dir -r requirements-dev.txt
 COPY . .
-RUN flake8 . && pytest -q
+RUN flake8 . && pytest --cov=app --cov-report=term-missing --cov-fail-under=100 -q
 
 # ---------- Étape 3 : image finale de production ----------
 FROM base AS runtime
