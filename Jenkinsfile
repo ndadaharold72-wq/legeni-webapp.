@@ -13,7 +13,6 @@ pipeline {
         KUBECONFIG = ''
         CI_NETWORK = "legeni-ci-${BUILD_NUMBER}"
         TEST_CONTAINER = "legeni-ci-app-${BUILD_NUMBER}"
-        IMAGE_TAG = ''
     }
 
     stages {
