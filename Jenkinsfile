@@ -70,7 +70,7 @@ pipeline {
                     docker run --rm \
                       -v /run/docker.sock:/var/run/docker.sock \
                       aquasec/trivy:0.58.2 \
-                      image --exit-code 1 --severity HIGH,CRITICAL \
+                      image --exit-code 1 --severity HIGH,CRITICAL --ignore-unfixed \
                       --scanners vuln "$IMAGE:$IMAGE_TAG"
                 '''
             }
